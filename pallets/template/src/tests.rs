@@ -1,13 +1,17 @@
-use crate::{Error, mock::*};
-use frame_support::{assert_ok, assert_noop};
+use crate::{mock::*, Error};
+use frame_support::{assert_noop, assert_ok};
 
 #[test]
 fn it_works_for_default_value() {
 	new_test_ext().execute_with(|| {
 		// Dispatch a signed extrinsic.
-		assert_ok!(TemplateModule::do_something(Origin::signed(1), 42));
+		assert_ok!(TemplateModule::get_rooms(Origin::signed(1)));
+		assert_ok!(TemplateModule::join_room(Origin::signed(1), 42));
+		assert_ok!(TemplateModule::join_room(Origin::signed(1), 43));
+		assert_ok!(TemplateModule::join_room(Origin::signed(1), 44));
+		//let account_info=TemplateModule::get_test(0);
 		// Read pallet storage and assert an expected result.
-		assert_eq!(TemplateModule::something(), Some(42));
+		//assert_eq!(TemplateModule::something(), Some(42));
 	});
 }
 

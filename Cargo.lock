@@ -3594,10 +3594,12 @@ version = "2.0.0"
 dependencies = [
  "frame-support",
  "frame-system",
+ "pallet-timestamp",
  "parity-scale-codec",
  "sp-core",
  "sp-io",
  "sp-runtime",
+ "sp-std",
 ]
 
 [[package]]

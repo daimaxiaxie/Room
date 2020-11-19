@@ -5,6 +5,7 @@ use sp_runtime::{
 	traits::{BlakeTwo256, IdentityLookup}, testing::Header, Perbill,
 };
 use frame_system as system;
+use pallet_timestamp;
 
 impl_outer_origin! {
 	pub enum Origin for Test {}
@@ -48,6 +49,21 @@ impl system::Trait for Test {
 	type OnKilledAccount = ();
 	type SystemWeightInfo = ();
 }
+
+
+pub const MILLISECS_PER_BLOCK: u64 = 6000;
+pub const SLOT_DURATION: u64 = MILLISECS_PER_BLOCK;
+parameter_types! {
+	pub const MinimumPeriod: u64 = SLOT_DURATION / 2;
+}
+
+impl pallet_timestamp::Trait for Test {
+	type Moment = u64;
+	type OnTimestampSet = ();
+	type MinimumPeriod = MinimumPeriod;
+	type WeightInfo = ();
+}
+
 
 impl Trait for Test {
 	type Event = ();
